@@ -1,0 +1,30 @@
+server:
+  port: 6001
+
+spring:
+  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/fpga?characterEncoding=utf-8&serverTimezone=UTC
+#    username: root
+#    password: 123456
+    # 树莓派是红以下语句
+    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://192.168.137.16:3306/fpga?characterEncoding=utf-8&useSSL=false&useTimezone=true&serverTimezone=GMT%2B8
+    url: jdbc:mariadb://127.0.0.1:3306/fpga?characterEncoding=utf-8&useSSL=false&useTimezone=true&serverTimezone=GMT%2B8
+    username: ppqppl
+    password: 123456
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+  resources:
+    static-locations: classpath:/
+
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true

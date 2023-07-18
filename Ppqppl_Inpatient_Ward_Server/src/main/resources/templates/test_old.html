@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>考试</title>
+</head>
+<body>
+
+<input id = "response-container">
+<!--    ppqppl——udp数据-->
+<!--</input>-->
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var t = 0;
+    var if_up = false;
+    function myFunction() {
+        console.log("执行了myFunction函数");
+        location.reload();
+    }
+    function getscore(){
+        $.ajax({
+            url: "/getdis",
+            type: "GET",
+            success: function(response) {
+                t++;
+                console.log(t);
+                console.log(response);
+                console.log(typeof(response));
+                if(response == "start"){
+                    if_up = true;
+                }
+                else if(response == "stop"){
+                    if_up = false;
+                }
+                if(if_up == true) {
+                    $("#response-container").val(response);
+                }
+                else {
+                    $("#response-container").val("stop");
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log("error");
+            }
+        });
+    }
+    setInterval(getscore, 50);
+</script>
+</html>

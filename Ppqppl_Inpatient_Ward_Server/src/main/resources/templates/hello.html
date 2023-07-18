@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org"
+      xmlns:ws="http://www.thymeleaf.org/extras/websocket">
+<head>
+    <meta charset="UTF-8">
+    <title>jjj</title>
+</head>
+<body>
+<input th:text="${mmm}">
+<input name="content">
+<div id = "response-container">
+    ppqppl——udp数据
+</div>
+    <a th:href="'/'">
+        <button>开始考试</button>
+    </a>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function myFunction() {
+        console.log("执行了myFunction函数");
+        location.reload();
+    }
+    // setInterval(myFunction, 1000);
+
+    function postData() {
+        //使用ajax的方式 向Controller提交表单
+        $("#asf").load("[[@{/comments}]]",{
+            "mmm" : $("[name='content']").val()
+        },function (responseTxt, statusTxt, xhr) {  //回调函数
+            //提交表单之后，调用clearContent()方法  会清理掉之前表单填写的东西
+        });
+    }
+    // setInterval(postData, 1000);
+    // function aaa(){
+    //     $.ajax({
+    //         url: "/test",
+    //         type: "GET",
+    //         success: function(response) {
+    //             $("#response-container").html(response);
+    //         },
+    //         error: function(xhr, status, error) {
+    //             console.log("error");
+    //         }
+    //     });
+    //
+    // }
+    // setInterval(aaa, 1000);
+</script>
+</html>

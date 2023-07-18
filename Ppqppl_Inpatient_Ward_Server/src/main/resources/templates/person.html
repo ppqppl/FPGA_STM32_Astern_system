@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+        td[contenteditable]:hover {
+            background-color: #f5f5f5;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<h1>My Profile</h1>
+<table>
+    <tbody>
+    <tr>
+        <td>ID:</td>
+        <td id="id" contenteditable></td>
+    </tr>
+    <tr>
+        <td>Name:</td>
+        <td id="name" contenteditable></td>
+    </tr>
+    <tr>
+        <td>Gender:</td>
+        <td id="gender" contenteditable></td>
+    </tr>
+    <tr>
+        <td>ID Card:</td>
+        <td id="idcard" contenteditable></td>
+    </tr>
+    <tr>
+        <td>Account:</td>
+        <td id="account" contenteditable></td>
+    </tr>
+    <tr>
+        <td>Password:</td>
+        <td id="password" contenteditable></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button class="button" onclick="saveProfile()">Save</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    var user = {
+        id: "001",
+        name: "John Doe",
+        gender: "Male",
+        idcard: "1234567890123456",
+        account: "johndoe123",
+        password: "********"
+    };
+
+    // 将用户信息显示在页面上
+    function displayProfile() {
+        document.getElementById("id").innerHTML = user.id;
+        document.getElementById("name").innerHTML = user.name;
+        document.getElementById("gender").innerHTML = user.gender;
+        document.getElementById("idcard").innerHTML = user.idcard;
+        document.getElementById("account").innerHTML = user.account;
+        document.getElementById("password").innerHTML = user.password;
+    }
+
+    // 保存用户信息
+    function saveProfile() {
+        user.id = document.getElementById("id").innerHTML;
+        user.name = document.getElementById("name").innerHTML;
+        user.gender = document.getElementById("gender").innerHTML;
+        user.idcard = document.getElementById("idcard").innerHTML;
+        user.account = document.getElementById("account").innerHTML;
+        user.password = document.getElementById("password").innerHTML;
+        displayProfile();
+    }
+
+    // 页面加载时显示用户信息
+    displayProfile();
+</script>
+</body>
+</html>

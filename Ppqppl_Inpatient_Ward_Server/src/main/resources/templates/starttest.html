@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>考试界面</title>
+</head>
+<body>
+<div class="main">
+    <h1 align="center" style="padding-bottom: 30px">个人成绩表</h1>
+    <table border="1px" cellspacing="0px"
+           cellpadding="9px">
+        <tr>
+            <td>时间</td>
+            <td>距离</td>
+            <td>成绩</td>
+        </tr>
+        <tr th:each="score:${scores}">
+            <td th:text="${score.time}">时间</td>
+            <td th:text="${score.distance}">距离</td>
+            <td th:text="${score.score}">成绩</td>
+        </tr>
+    </table>
+    <div style="padding-top: 20px;">
+        <a th:href="'/index'">
+            <button>返回</button>
+        </a>
+<!--        <a th:href="'/test'" class="starttest">-->
+            <button class="starttestbtn" onclick="clickstarttestbtn()">开始考试</button>
+<!--        </a>-->
+    </div>
+</div>
+<div th:text="${times}" id="myData" class="myData">
+
+</div>
+</body>
+<style type="text/css">
+    .main{
+        left: 0;
+        top: 0;
+        position: absolute;
+        background-color: rgba(255,255,255,0.3);
+        width: 100%;
+        height: 100%;
+    }
+    body{
+        background-image: url("../Imgs/back-main.jpg");
+        background-repeat:no-repeat ;
+        background-size:100% 100%;
+        background-attachment: fixed;
+
+    }
+    h1{
+        padding-top: 75px;
+    }
+    div{
+        margin: 0 auto;
+        text-align:center;
+        align-items: center;
+    }
+    /*table {*/
+    /*    margin-right: auto;*/
+    /*    margin-left: auto;*/
+    /*    text-align: center;*/
+    /*}*/
+
+    table{
+        border-collapse: collapse;
+        margin: 0 auto;
+        text-align: center;
+    }
+    table td, table th{
+        border: 1px solid #cad9ea;
+        color: #666;
+        height: 30px;
+    }
+    table thead th{
+        background-color: #CCE8EB;
+        width: 100px;
+    }
+    table tr:nth-child(odd){
+        background: #fff;
+    }
+    table tr:nth-child(even){
+        background: #F5FAFA;
+    }
+    td{
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    a{
+        text-decoration:none;
+    }
+    ipnut{
+        width: 20px;
+    }
+    .as .current{
+        width: 600px;
+        text-align: center;
+    }
+    ul::after{
+        content:"";
+        display:block;
+        height:0;
+        clear:both;
+        visibility:hidden;
+    }
+    ul{
+        margin-left: -35px;
+    }
+    .one{
+        margin-left: 15px;
+    }
+    ul a{
+        text-decoration: none;
+        display: inline-block;
+        width: 50px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+
+    }
+    ul li{
+        float: left;
+        background: #ffc0cb;
+        list-style: none;
+        margin: 10px;
+        border-radius: 10px;
+    }
+    button {
+        --clr-font-main: hsla(0 0% 20% / 100);
+        --btn-bg-1: hsla(194 100% 69% / 1);
+        --btn-bg-2: hsla(217 100% 56% / 1);
+        --btn-bg-color: hsla(360 100% 100% / 1);
+        --radii: 0.5em;
+        cursor: pointer;
+        padding: 0.9em 1.4em;
+        min-width: 120px;
+        min-height: 44px;
+        font-size: var(--size, 1rem);
+        font-family: "Segoe UI", system-ui, sans-serif;
+        font-weight: 500;
+        transition: 0.8s;
+        background-size: 280% auto;
+        background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
+        border: none;
+        border-radius: var(--radii);
+        color: var(--btn-bg-color);
+        box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125, 233, 0.25), inset 4px 4px 8px rgba(175, 230, 255, 0.5), inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+    }
+
+    button:hover {
+        background-position: right top;
+    }
+
+    button:is(:focus, :focus-within,:active) {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        button {
+            transition: linear;
+        }
+    }
+
+    .myData{
+        display: none;
+    }
+</style>
+<script>
+    times = document.getElementById("myData").textContent;
+    astarttest = document.getElementsByClassName("starttest");
+    var myButton = document.getElementsByClassName("starttestbtn");
+    function clickstarttestbtn(){
+        if (times < 3) {
+            // 跳转到指定页面
+            location.href = "/test";
+            console.log("jump")
+            // const currentPath = window.location.pathname;
+            // console.log(currentPath);
+        } else {
+            alert("考试次数耗尽！");
+        }
+    };
+    function ifjump(){
+        console.log(times);
+    }
+
+    // setInterval(ifjump, 50);
+</script>
+</html>

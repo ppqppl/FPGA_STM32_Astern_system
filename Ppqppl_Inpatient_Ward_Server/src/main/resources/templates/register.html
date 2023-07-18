@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title>注册账号</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
+        <meta content="Themesbrand" name="author">
+        
+        <!-- Bootstrap Css -->
+        <link href="../css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+        <!-- Icons Css -->
+        <link href="../css/icons.min.css" rel="stylesheet" type="text/css">
+        <!-- App Css-->
+        <link href="../css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body style="background-image: url(../Imgs/back-main.jpg);
+    background-repeat:no-repeat ;
+    background-size:100% 100%;
+    background-attachment: fixed;">
+    <h1 style="text-align: center;padding-top: 125px;color: #000000">欢迎使用科目二考试系统</h1>
+        <div class="account-pages my-5 pt-sm-5">
+            <div class="container">
+                <div class="row justify-content-center" style="background-color: rgba(225,225,225,0);">
+                    <div class="col-md-8 col-lg-6 col-xl-5" style="background-color: rgba(225,225,225,0);">
+                        <div class="card overflow-hidden" style="background-color: rgba(225,225,225,0.7);">
+                            <div class="card-body pt-0">
+                                <div class="p-3">
+                                    <h4 class="text-muted mb-1 text-center"  style="font-size: 18px;padding-top: 50px">注册</h4>
+                                    <p class="text-muted text-center" th:text="${regmsg}">获取你的免费账号！</p>
+                                    <form class="form-horizontal mt-4" th:action="@{/doregister}" th:object="${newuser}" id="myform" method="post">
+
+                                        <div class="mb-3">
+                                            <label for="username">姓名</label>
+                                            <input type="text" class="form-control" id="username" th:field="${newuser.name}" placeholder="输入用户名" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="userid">身份证号</label>
+                                            <input type="text" class="form-control" id="userid" th:field="${newuser.id}" minlength="18" maxlength="18" placeholder="输入身份证号" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="usersex">性别</label>
+                                            <input type="text" class="form-control" id="usersex" th:field="${newuser.sex}" placeholder="输入性别" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="userphone">电话</label>
+                                            <input type="text" class="form-control" id="userphone" th:field="${newuser.phone}" minlength="11" maxlength="11" placeholder="输入电话号码" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="useremail">邮箱</label>
+                                            <input type="email" class="form-control" id="useremail" th:field="${newuser.mail}" placeholder="输入邮箱地址" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="useraccount">账号</label>
+                                            <input type="text" class="form-control" id="useraccount" th:field="${newuser.account}" minlength="6" placeholder="输入账号" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="userpassword">密码</label>
+                                            <input type="password" class="form-control" id="userpassword" th:field="${newuser.pwd}" minlength="8" placeholder="输入密码" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="userkind">账号类型</label>
+                                            <input type="text" class="form-control" id="userkind" th:field="${newuser.kind}" minlength="2" maxlength="3" placeholder="输入账号权限类型: 管理员或考生" required>
+                                        </div>
+                                        <div class="mb-3 row mt-4">
+                                            <div class="col-12 text-end">
+                                                <button class="btn btn-primary w-md waves-effect waves-light finish" >点击注册</button>
+                                            </div>
+                                        </div>
+                                    </form>
+<!--                                    <div class="mb-3 row mt-4">-->
+<!--                                        <div class="col-12 text-end">-->
+<!--                                            <button class="btn btn-primary w-md waves-effect waves-light" onclick="registerbtnclick()">点击注册</button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <div class="mt-5 text-center">
+                                        <p>已有账号 ? <a th:href="'/login'" class="text-primary"> 去登录 </a> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JAVASCRIPT -->
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="../js/metisMenu.min.js"></script>
+        <script src="../js/simplebar.min.js"></script>
+        <script src="../js/waves.min.js"></script>
+        <script src="../js/jquery.sparkline.min.js"></script>
+        <!-- App js -->
+        <script src="../js/app.js"></script>
+        <script>
+            const input = document.getElementById("userkind");
+            input.addEventListener("input", function() {
+                if (this.value !== "考生") {
+                    this.setCustomValidity("当前界面只能注册\"考生\"账号！");
+                } else {
+                    this.setCustomValidity("");
+                }
+            });
+        </script>
+    </body>
+
+</html>

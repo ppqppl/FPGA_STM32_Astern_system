@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>考生信息界面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
+    <meta content="Themesbrand" name="author">
+
+    <!-- Bootstrap Css -->
+    <link href="../css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+    <!-- Icons Css -->
+    <link href="../css/icons.min.css" rel="stylesheet" type="text/css">
+    <!-- App Css-->
+    <link href="../css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="background-image: url(../Imgs/back-main.jpg);
+    background-repeat:no-repeat ;
+    background-size:100% 100%;
+    background-attachment: fixed;">
+<h1 style="text-align: center;padding-top: 125px;color: #000000">考生信息管理</h1>
+<div class="account-pages my-5 pt-sm-5">
+    <div class="container">
+        <div class="row justify-content-center" style="background-color: rgba(225,225,225,0);">
+            <div class="col-md-8 col-lg-6 col-xl-5" style="background-color: rgba(225,225,225,0);">
+                <div class="card overflow-hidden" style="background-color: rgba(225,225,225,0.7);">
+                    <div class="card-body pt-0">
+                        <div class="p-3">
+                            <h4 class="text-muted mb-1 text-center"  style="font-size: 18px;padding-top: 50px">个人信息</h4>
+                            <p class="text-muted text-center" th:text="${regmsg}">获取你的免费账号！</p>
+                            <form class="form-horizontal mt-4" th:action="@{/updatestudent}" th:object="${usernow}" method="post">
+
+                                <div class="mb-3">
+                                    <label for="username">姓名</label>
+                                    <input type="text" class="form-control" id="username" th:field="${usernow.name}" placeholder="输入用户名" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="userpassword">身份证号</label>
+                                    <input type="text" class="form-control user_id" id="userid" th:field="${usernow.id}" minlength="18" maxlength="18" placeholder="输入身份证号" required readonly>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="useremail">性别</label>
+                                    <input type="text" class="form-control" id="usersex" th:field="${usernow.sex}" placeholder="输入性别" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="useremail">电话</label>
+                                    <input type="text" class="form-control" id="userphone" th:field="${usernow.phone}" minlength="11" maxlength="11" placeholder="输入电话号码" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="useremail">邮箱</label>
+                                    <input type="email" class="form-control" id="useremail" th:field="${usernow.mail}" placeholder="输入邮箱地址" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="userpassword">账号</label>
+                                    <input type="text" class="form-control" id="useraccount" th:field="${usernow.account}" minlength="6" placeholder="输入账号" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="userpassword">密码</label>
+                                    <input type="text" class="form-control" id="userpassword" th:field="${usernow.pwd}" minlength="8" placeholder="输入密码" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="userpassword">账号类型</label>
+                                    <input type="text" class="form-control" id="userkind" th:field="${usernow.kind}" minlength="2" maxlength="3" placeholder="输入账号权限类型: 管理员或考生" required>
+                                </div>
+
+                                <div class="mb-3 row mt-4">
+                                    <div class="col-12 text-end">
+                                        <button class="btn btn-primary w-md waves-effect waves-light">点击修改</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="mt-5 text-center">
+                                <button class="btn btn-primary w-md waves-effect waves-light" onclick="startedit()">
+                                    信息修改
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/metisMenu.min.js"></script>
+<script src="../js/simplebar.min.js"></script>
+<script src="../js/waves.min.js"></script>
+<script src="../js/jquery.sparkline.min.js"></script>
+<!-- App js -->
+<script src="../js/app.js"></script>
+<script>
+    var if_edit = false;
+    let elements = document.getElementsByClassName("form-control");
+    let id_element = document.getElementsByClassName("user_id");
+    function judgeedit(){
+        if (if_edit == true){
+            console.log("aaa");
+            elements.disabled = true;
+        }
+        else if(if_edit == false){
+            console.log("bbb");
+            elements.disabled = true;
+        }
+    }
+
+    let i=0;
+    for(i = 0;i<elements.length;i++){
+        elements[i].readOnly = true;
+    }
+    function startedit(){
+        console.log(elements[0], "test1");
+        if (if_edit == false){
+            if_edit = true;
+            let i=0;
+                for(i = 0;i<elements.length;i++){
+                    elements[i].readOnly = false;
+                }
+        }
+        else {
+            console.log("bbb");
+            if_edit = false;
+            let i=0;
+            for(i = 0;i<elements.length;i++){
+                elements[i].readOnly = true;
+            }
+        }
+        elements[1].readOnly=true;
+        elements[7].readOnly=true;
+    }
+</script>
+</body>
+
+</html>
